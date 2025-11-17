@@ -101,7 +101,7 @@ Hay que subir al directorio /lib de la Pico  / W / 2W
 
 ### Montaje HW
 
-![]()
+![](https://github.com/Jcspoza/CMM_Python_uP_PicoW/raw/main/2425CL5_LCD1st/doc/picow_lcd_bb.png)
 
 
 
