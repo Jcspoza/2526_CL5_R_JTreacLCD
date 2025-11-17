@@ -81,9 +81,23 @@ Vamos a escribir en una tabla por un lado los requisitos HW y por otro lado las 
 
 ### SIN interrupciones: contar pulsaciones: **PulsaScan** v1.0 y v2.1
 
+[R_2526CL5_PulsaScan_1_0.py](R_2526CL5_PulsaScan_1_0.py) : cuenta las veces que se ha pulsado un pulsador , establece un tiempo de espera de 1 segundo entre pulsaciones 
+
+[R_2526CL5_PulsaScan_1_2.py](R_2526CL5_PulsaScan_1_2.py) : cuenta las veces que se ha pulsado un pulsador , establece un tiempo de espera de **personalizabl**e : recomendado 250 miliseg
+
 ### SIN interrupciones: medir Tiempo: **PulsaTime** v1.0
 
+[R_2526CL5_PulsaTime_1_0.py](R_2526CL5_PulsaTime_1_0.py) : mide el tiempo de la primera pulsación, o tiempo de reacción justo cuando el led interno se apaga
+
 #### Medir diferencias de tiempo en uC
+
+<u>Cuidado </u>: la medida del tiempo con contadores limitados en cuanto a dígitos , puede producir restas con errores
+
+### Breve explicación de interrupciones y Rebotes
+
+![](./doc/interrupciones.png)
+
+![](./doc/rebotes.png)
 
 ### CON interrupciones: contar pulsaciones:
 
