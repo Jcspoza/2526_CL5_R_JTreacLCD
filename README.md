@@ -77,7 +77,7 @@ Vamos a escribir en una tabla por un lado los requisitos HW y por otro lado las 
 
 ### Breve explicación sobre pulsadores
 
-![](C:\Users\josec\OneDrive\Documentos\GitHub\2526_CL5_R_JTreacLCD\doc\pulsadores.png)
+![](./doc/pulsadores.png)
 
 ### SIN interrupciones: contar pulsaciones: **PulsaScan** v1.0 y v2.1
 
