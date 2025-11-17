@@ -77,7 +77,7 @@ Vamos a escribir en una tabla por un lado los requisitos HW y por otro lado las 
 
 ### Breve explicación sobre pulsadores
 
-
+![](C:\Users\josec\OneDrive\Documentos\GitHub\2526_CL5_R_JTreacLCD\doc\pulsadores.png)
 
 ### SIN interrupciones: contar pulsaciones: **PulsaScan** v1.0 y v2.1
 
@@ -136,8 +136,6 @@ El componente mas demandante de potencia y voltaje es el LCD que de hecho puede 
 Resultado: **el montaje necesita para funcionar de forma autónoma una Powerbank o equivalente que de 5volt a la entrada USB de la Pico**
 
 ---
-
-
 
 ## Prototipos Juego x1- SIN LCD
 
