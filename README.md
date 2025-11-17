@@ -75,6 +75,10 @@ Vamos a escribir en una tabla por un lado los requisitos HW y por otro lado las 
 
 ## Aprender / Entender: pulsadores, interrupciones y medidas de tiempo
 
+### Breve explicación sobre pulsadores
+
+
+
 ### SIN interrupciones: contar pulsaciones: **PulsaScan** v1.0 y v2.1
 
 ### SIN interrupciones: medir Tiempo: **PulsaTime** v1.0
@@ -84,6 +88,8 @@ Vamos a escribir en una tabla por un lado los requisitos HW y por otro lado las 
 ### CON interrupciones: contar pulsaciones:
 
 ### CON interrupciones: medir Tiempo: **PulsaTime** v1.0
+
+---
 
 ## Test Básico HW del LCD
 
@@ -103,14 +109,57 @@ Hay que subir al directorio /lib de la Pico  / W / 2W
 
 ![](https://github.com/Jcspoza/CMM_Python_uP_PicoW/raw/main/2425CL5_LCD1st/doc/picow_lcd_bb.png)
 
+### Ejecutar el test básico del LCD
 
+Al ejecutar 
+
+[R_bhwt_lcd16x2_I2C.py](R_bhwt_lcd16x2_I2C.py)
+
+Aparecerá un mensaje en las 2 líneas del display
+
+## Prueba de la Funcionalidad : Autonomía
+
+El componente mas demandante de potencia y voltaje es el LCD que de hecho puede no funcionar a 3.3 volt. Probamos a ejecutar el bhwt del LCD desconectado del PC
+
+1. Pasar [R_bhwt_lcd16x2_I2C.py](R_bhwt_lcd16x2_I2C.py) -> main.py a al Pico
+
+2. Conectar VCC del LCD a VSYS
+
+3. Concetar bateria Lipo a VSYS y GND => FAIL en montaje de JCSP
+
+4. ---------------------------------------
+
+5. Re concetar VCC del LCD a +5volt del protoboard ( VBUS)
+
+6. Conectar powerbank a concetor Pico => OK
+
+Resultado: **el montaje necesita para funcionar de forma autónoma una Powerbank o equivalente que de 5volt a la entrada USB de la Pico**
+
+---
+
+
+
+## Prototipos Juego x1- SIN LCD
+
+[R_2526CL5_JTReacX1_irq_1_0.py](R_2526CL5_JTReacX1_irq_1_0.py) : copia del programa del libro con ajuste de GPIO´s- poco útil
+
+[R_2526CL5_JTReacX1_irq_2_0.py](R_2526CL5_JTReacX1_irq_2_0.py) : Básicamente es el programa del libro con ajuste de GPIO´s y muchos comentarios útiles -> **Empezar estudio por aqui**
+
+[R_2526CL5_JTReacX1_irq_2_1.py](R_2526CL5_JTReacX1_irq_2_1.py) : En vez de esperar 2 segundo a que acabe de reaccionar el jugador, usa la salida de la interrupción ( = una variable que modifica la interrupción)
+
+## Prototipos Juego x1- CON LCD
+
+[R_2526CL5_JTReacX1_irqLCD_1_0.py](R_2526CL5_JTReacX1_irqLCD_1_0.py) : basado en la version 2.1 sin LCD, simplemente añade mensajes de salida en el LCD
 
 ## Tabla resumen de programas
 
-| Programa | Lenguaje | HW si Robotica y Notas | Objetivo de Aprendizaje |
-| -------- | -------- | ---------------------- | ----------------------- |
-|          |          |                        |                         |
+| Programa                                                   | Lenguaje | HW si Robotica y Notas                          | Objetivo de Aprendizaje    |
+| ---------------------------------------------------------- | -------- | ----------------------------------------------- | -------------------------- |
+| [lcd_api.py](lcd_api.py)[pico_i2c_lcd.py](pico_i2c_lcd.py) | uPy      | instalar en /lib en la Pico                     | Librerias para el LCD      |
+| [R_bhwt_lcd16x2_I2C.py](R_bhwt_lcd16x2_I2C.py)             | uPy      | SDA -> GPIO4 / SCL -> GPIO5 / GND / VCC a+5volt | Test basico HW del LCD i2c |
 
 ---
 
 ## TO DO :
+
+- **Ampliar el Juego a 2 jugadores**
