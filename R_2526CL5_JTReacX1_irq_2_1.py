@@ -10,7 +10,7 @@
 
 from machine import Pin # Get the Pin function from the machine module.
 from urandom import uniform
-import utime  
+from utime import sleep, ticks_ms, ticks_diff
 
 # Informative block - start
 p_ucontroler = "Pico W / NO Pico _"
@@ -21,35 +21,38 @@ print(f"Microcontroler: {p_ucontroler} - Key other HW : {p_keyOhw}")
 print(f"Program: {p_project} - Version: {p_version}")
 # Informative block - end
 
-EXTERNAL_BUTTON = 15
-pulsador = Pin(EXTERNAL_BUTTON, Pin.IN, Pin.PULL_DOWN)
+# 0 - Creacion de objetos
+# 0.1 Objeto pulsador y led externo
+PINPULSADOR = 15
+pulsador = Pin(PINPULSADOR, Pin.IN)
 
-intled = Pin(16, Pin.OUT)
+extled = Pin(16, Pin.OUT)
 
-pressed = False
+# 0.2 Variables generales
+pulsado = False
 tiempoReaccion = None 
 
-def manejaPulsador(pin):    
-    global pressed, tiempoReaccion
-    if not pressed:
-        pressed=True
-        tiempoReaccion = utime.ticks_diff(utime.ticks_ms(), tiempo_start)
+# F- Funciones 
+def pulsador_quehacer(pin):    
+    global pulsado, tiempoReaccion
+    if not pulsado:
+        pulsado=True
+        tiempoReaccion = ticks_diff(ticks_ms(), tiempo_start)
          
-# Fase 0- presentacion e instrucciones + configuracion interrupcion
+# Fase 1 - presentacion e instrucciones + configuracion interrupcion
 print("El led se encendera y apagara. Tienes que pulsar despues de que se apague")
-pulsador.irq(trigger=Pin.IRQ_RISING, handler=manejaPulsador)
+pulsador.irq(trigger=Pin.IRQ_RISING, handler=pulsador_quehacer)
 
-# Fase 1- Comienza el juego encendiendo el led
-intled.value(1)
-utime.sleep(uniform(2, 5))
-intled.value(0)
-tiempo_start = utime.ticks_ms() # aqui ponemos a cero el tiempo
+# Fase 2- Comienza el juego encendiendo el led
+extled.value(1)
+sleep(uniform(2, 5))
+extled.value(0)
+tiempo_start = ticks_ms() # aqui ponemos a cero el tiempo
 
-# utime.sleep(2) # dejamos tiempo suficiente para que pulse el pulsador
-# Todo : pasar de fase justo despues de pulsar
-while not pressed:
+# Espero a pasar de fase justo despues de pulsar
+while not pulsado:
     pass
 
-# Fase 2- Fin del juego
+# Fase 3- Fin del juego
 print(f"¡Tu tiempo de reaccion fue de  {tiempoReaccion} millisegundos!")
 print('-------------- Fin del juego --------------')

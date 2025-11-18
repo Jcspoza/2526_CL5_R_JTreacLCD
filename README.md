@@ -77,17 +77,17 @@ Para hacerlo mas 'real' , vamos a llegar a un **prototipo autónomo**, es decir 
 
 Vamos a escribir en una tabla por un lado los requisitos HW y por otro lado las pruebas básicas + pruebas de aprendizaje + programas con funcionalidades requeridas
 
-| Prueba/ Funcionalidad                                                                 | Alimentación independiente                      | LCD          | Pulsador con interrupciones                                                                      | Medir Tiempo con pulsadores                                        |
-| ------------------------------------------------------------------------------------- | ----------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| Pruebas de Aprendizaje                                                                |                                                 |              | Aprender / Entender pulsadores SIN interrupciones: contar pulsaciones: **PulsaScan** v1.0 y v2.1 |                                                                    |
-| Pruebas de Aprendizaje                                                                |                                                 |              |                                                                                                  | Medir tiempo SIN interrupción: PulsaTime v1.0                      |
-| Pruebas de Aprendizaje                                                                |                                                 |              | Entender pulsadores CON interrupciones, contar pulsaciones                                       |                                                                    |
-| Pruebas de Aprendizaje                                                                |                                                 |              |                                                                                                  | Medir tiempo CON interrupciones PulsaTimeIrq v1.0, v2.0            |
-| Test básico                                                                           |                                                 | Bhwt del LCD |                                                                                                  |                                                                    |
-| Funcionalidad : Autonomía                                                             | Ejecutar BHWT de LCD con 1.batería Lipo => FAIL |              |                                                                                                  |                                                                    |
-| Funcionalidad : Autonomía                                                             | Ejecutar BHWT de LCD con 2. Power bank => OK    |              |                                                                                                  |                                                                    |
-| Funcionalidad: Medir tiempo Reacción 1 jugador CON Interrupciones                     |                                                 |              | X                                                                                                | Primeros prototipos Juego x1:  **JTReacX1_irq** :  v1.0, v2.0 v2.1 |
-| Funcionalidades: Medir tiempo Reacción 1 jugador CON Interrupciones + LCD + powerbank | JTReacX1_irqLCD_1_0.py                          | X            | X                                                                                                | X                                                                  |
+| Prueba/ Funcionalidad                                                                 | Alimentación independiente                      | LCD          | <u>Pulsador </u>: contar Pulsaciones                                  | Pulsador: Medir Tiempo usando interrupciones                       |
+| ------------------------------------------------------------------------------------- | ----------------------------------------------- | ------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Pruebas de Aprendizaje                                                                |                                                 |              | Aprender / Entender pulsadores SIN interrupciones: contar pulsaciones |                                                                    |
+| Pruebas de Aprendizaje                                                                |                                                 |              |                                                                       | Medir tiempo SIN interrupción:                                     |
+| Pruebas de Aprendizaje                                                                |                                                 |              | Entender pulsadores CON interrupciones, contar pulsaciones            |                                                                    |
+| Funcionalidad: Medir tiempo de reacción                                               |                                                 |              |                                                                       | Medir tiempo CON interrupciones                                    |
+| Test básico                                                                           |                                                 | Bhwt del LCD |                                                                       |                                                                    |
+| Funcionalidad : Autonomía                                                             | Ejecutar BHWT de LCD con 1.batería Lipo => FAIL |              |                                                                       |                                                                    |
+| Funcionalidad : Autonomía                                                             | Ejecutar BHWT de LCD con 2. Power bank => OK    |              |                                                                       |                                                                    |
+| Funcionalidad: Medir tiempo Reacción 1 jugador CON Interrupciones                     |                                                 |              | X                                                                     | Primeros prototipos Juego x1:  **JTReacX1_irq** :  v1.0, v2.0 v2.1 |
+| Funcionalidades: Medir tiempo Reacción 1 jugador CON Interrupciones + LCD + powerbank | JTReacX1_irqLCD_1_0.py                          | X            | X                                                                     | X                                                                  |
 
 ## 
 
@@ -133,10 +133,17 @@ El **principal problema de los pulsadores son los rebotes:** el circuito eléctr
 
 ![](./doc/antirebote_porHW.png)
 
-
 ### CON interrupciones: contar pulsaciones:
 
-### CON interrupciones: medir Tiempo: **PulsaTime** v1.0
+[R_2526CL5_PulsaScanIrq_2_0.py](R_2526CL5_PulsaScanIrq_2_0.py) : Usa interrupciones para **contar** pulsaciones - SIN anti- rebote por SW. ERROR
+
+[R_2526CL5_PulsaScanIrq_3_0.py](R_2526CL5_PulsaScanIrq_3_0.py) : Usa interrupciones para **contar** pulsaciones - CON anti- rebote por SW de 200milisegundos
+
+### CON interrupciones: medir Tiempo
+
+[R_2526CL5_PulsaTimeIrq_1_0.py](R_2526CL5_PulsaTimeIrq_1_0.py): Usa interrupciones para **medir tiempo** - ERROR sigue midiendo tiempos.
+
+[R_2526CL5_PulsaTimeIrq_2_0.py](R_2526CL5_PulsaTimeIrq_2_0.py): Usa interrupciones para **medir tiempo** - solo mide la primera vez. ==>**Su codigo sera la base del juego**
 
 ---
 
@@ -198,7 +205,7 @@ Resultado: **el montaje necesita para funcionar de forma autónoma una Powerbank
 
 ## 2x Funcionalidades: Tiempo de reacción con int. + Autonomía :Prototipos Juego x1- CON LCD
 
-[R_2526CL5_JTReacX1_irqLCD_1_0.py](R_2526CL5_JTReacX1_irqLCD_1_0.py) : basado en la version 2.1 sin LCD, simplemente añade mensajes de salida en el LCD
+[R_2526CL5_JTReacX1_irqLCD_1_0.py](R_2526CL5_JTReacX1_irqLCD_1_0.py) : basado en la versión 2.1 sin LCD, simplemente añade mensajes de salida en el LCD
 
 ---
 
@@ -208,10 +215,18 @@ Resultado: **el montaje necesita para funcionar de forma autónoma una Powerbank
 
 ## Tabla resumen de programas
 
-| Programa                                                   | Lenguaje | HW si Robotica y Notas                          | Objetivo de Aprendizaje    |
-| ---------------------------------------------------------- | -------- | ----------------------------------------------- | -------------------------- |
-| [lcd_api.py](lcd_api.py)[pico_i2c_lcd.py](pico_i2c_lcd.py) | uPy      | instalar en /lib en la Pico                     | Librerias para el LCD      |
-| [R_bhwt_lcd16x2_I2C.py](R_bhwt_lcd16x2_I2C.py)             | uPy      | SDA -> GPIO4 / SCL -> GPIO5 / GND / VCC a+5volt | Test basico HW del LCD i2c |
+| Programa                                                             | Lenguaje | HW si Robotica y Notas                          | Objetivo de Aprendizaje                                                                                                    |
+| -------------------------------------------------------------------- | -------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| [lcd_api.py](lcd_api.py)                                             | uPy      | instalar en /lib en la Pico                     | Librerías para el LCD                                                                                                      |
+| [pico_i2c_lcd.py](pico_i2c_lcd.py)                                   | uPy      | instalar en /lib en la Pico                     |                                                                                                                            |
+| [R_bhwt_lcd16x2_I2C.py](R_bhwt_lcd16x2_I2C.py)                       | uPy      | SDA -> GPIO4 / SCL -> GPIO5 / GND / VCC a+5volt | Test basico HW del LCD i2c                                                                                                 |
+| [R_2526CL5_PulsaScan_1_2.py](R_2526CL5_PulsaScan_1_2.py)             | uPy      | pulsador -> GPIO15/ Led interno                 | Aprendizaje de uso de pulsadores <u>SIN interrupciones</u>- Aucción  **contar**                                            |
+| [R_2526CL5_PulsaTime_1_0.py](R_2526CL5_PulsaTime_1_0.py) :           | uPy      | pulsador -> GPIO15/ Led interno                 | Aprendizaje de uso de pulsadores <u>SIN interrupciones</u>- Aucción  **Medir Tiempo**                                      |
+| [R_2526CL5_PulsaScanIrq_2_0.py](R_2526CL5_PulsaScanIrq_2_0.py)       | uPy      | pulsador -> GPIO15/ Led interno                 | Aprendizaje de uso de pulsadores <u>CON interrupciones</u>- Aucción  **contar**                                            |
+| [R_2526CL5_PulsaTimeIrq_2_0.py](R_2526CL5_PulsaTimeIrq_2_0.py)       | uPy      | pulsador -> GPIO15/ Led interno                 | Aprendizaje de uso de pulsadores <u>CON interrupciones</u>- Aucción  **Medir Tiempo**/ ==>Su codigo será la base del juego |
+| [R_2526CL5_JTReacX1_irq_2_0.py](R_2526CL5_JTReacX1_irq_2_0.py)       |          | pulsador -> GPIO15/ Led GPIO16                  | Prototipo Juego x1- SIN LCD                                                                                                |
+| [R_2526CL5_JTReacX1_irq_2_1.py](R_2526CL5_JTReacX1_irq_2_1.py)       |          | pulsador -> GPIO15/ Led GPIO16                  | Prototipo Juego x1- SIN LCD - Versión OK                                                                                   |
+| [R_2526CL5_JTReacX1_irqLCD_1_0.py](R_2526CL5_JTReacX1_irqLCD_1_0.py) |          | pulsador -> GPIO15/ Led GPIO16 / LCD GPIOS4 y 5 | Prototipo Juego x1- CON LCD                                                                                                |
 
 ---
 

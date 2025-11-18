@@ -28,15 +28,15 @@ print(f"Program: {p_project} - Version: {p_version}")
 
 # 0 - Creacion de objetos
 # 0.1 Objeto pulsador y led externo
-EXTERNAL_BUTTON = 15
-pulsador = Pin(EXTERNAL_BUTTON, Pin.IN)
+PINPULSADOR = 15
+pulsador = Pin(PINPULSADOR, Pin.IN)
 
 extled = Pin(16, Pin.OUT)
-
-pressed = False
+# 0.2 Variables generales
+pulsado = False
 tiempoReaccion = None
 
-#0.2 objeto LCD
+#0.3 objeto LCD
 LCD_ADDR = 0x3F
 LCD_NUM_ROWS = 2
 LCD_NUM_COLS = 16
@@ -44,15 +44,16 @@ FREQ = 400_000   # Try lowering this value in case of "Errno 5"
 i2c = I2C(0, sda = Pin(4), scl = Pin(5), freq = FREQ)
 lcd = I2cLcd(i2c, LCD_ADDR, LCD_NUM_ROWS, LCD_NUM_COLS)
 
-def manejaPulsador(pin):    
-    global pressed, tiempoReaccion
-    if not pressed:
-        pressed=True
+# F- Funciones 
+def pulsador_quehacer(pin):    
+    global pulsado, tiempoReaccion
+    if not pulsado:
+        pulsado=True
         tiempoReaccion = ticks_diff(ticks_ms(), tiempo_start)
          
-# Fase 0- presentacion e instrucciones + configuracion interrupcion
+# Fase 1- presentacion e instrucciones + configuracion interrupcion
 print("El led se encendera y apagara. Tienes que pulsar despues de que se apague")
-pulsador.irq(trigger=Pin.IRQ_RISING, handler=manejaPulsador)
+pulsador.irq(trigger=Pin.IRQ_RISING, handler=pulsador_quehacer)
 lcd.move_to(0,0)
 linea0 = 'Juego T. reac x1'
 lcd.putstr(linea0)
@@ -60,18 +61,17 @@ lcd.move_to(0,1)
 linea1 = 'Pulsa si led ->0'
 lcd.putstr(linea1)
 
-# Fase 1- Comienza el juego encendiendo el led
+# Fase 2- Comienza el juego encendiendo el led
 extled.value(1)
 sleep(uniform(2, 5))
 extled.value(0)
 tiempo_start = ticks_ms() # aqui ponemos a cero el tiempo
 
-# utime.sleep(2) # dejamos tiempo suficiente para que pulse el pulsador
-# Todo : pasar de fase justo despues de pulsar
-while not pressed:
+# Espero a pasar de fase justo despues de pulsar
+while not pulsado:
     pass
 
-# Fase 2- Fin del juego
+# Fase 3- Fin del juego
 lcd.clear()
 linea0 = f'Tu T.reac={tiempoReaccion}ms'
 lcd.putstr(linea0)
