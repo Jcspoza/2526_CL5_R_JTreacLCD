@@ -129,6 +129,10 @@ El **principal problema de los pulsadores son los rebotes:** el circuito eléctr
 
 ![](./doc/rebotes.png)
 
+#### Circuitos anti rebotes mas sencillos
+
+<img src="./doc/antirebote_porhw.png" title="" alt="" width="747">
+
 ### CON interrupciones: contar pulsaciones:
 
 ### CON interrupciones: medir Tiempo: **PulsaTime** v1.0
