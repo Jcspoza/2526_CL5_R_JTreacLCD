@@ -131,8 +131,7 @@ El **principal problema de los pulsadores son los rebotes:** el circuito eléctr
 
 #### Circuitos anti rebotes mas sencillos
 
-![](C:\Users\josec\OneDrive\Documentos\GitHub\2526_CL5_R_JTreacLCD\doc\antirebote_porHW.png)
-
+![](./doc/antirebote_porHW.png)
 
 
 ### CON interrupciones: contar pulsaciones:
