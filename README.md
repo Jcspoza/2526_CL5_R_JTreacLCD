@@ -8,11 +8,27 @@ Indice evolutivo del las clases del taller + libros y webs de referencia:
 
 - Materiales y links a información
 
+- Librerías importantes
+
 - Propuesta de proyecto
 
 - Plan de trabajo : prototipado en 2 Dimensiones 
 
+- Aprender / Entender: pulsadores, interrupciones y medidas de tiempo
+
+- Test Básico HW del LCD
+
+- 1x Prueba de la Funcionalidad : Autonomía con batería Lipo/ powerbank
+
+- 1x Funcionalidad: Tiempo de reacción con interrupciones: Prototipos Juego x1- SIN LCD
+
+- 2x Funcionalidades: Tiempo de reacción con int. + Autonomía :Prototipos Juego x1- CON LCD
+
 - 
+
+- 2x Funcionalidades : T. de reacción con int. + 2 jugadores :Prototipos Juego x2- SIN LCD - por hacer
+
+- 3x Funcionalidades : T. de reacción con int. + 2 jugadores + Autonomía :Prototipos Juego x2- SIN LCD - por hacer
 
 - Tabla resumen de programas
 
@@ -37,6 +53,8 @@ Indice evolutivo del las clases del taller + libros y webs de referencia:
 [Libro 'Get started with MicroPython on Raspberry Pi Pico'](https://github.com/Jcspoza/2526_PyR_Index/blob/main/doc/upython_RPi_PiPico_Digital_v10.pdf) que esta disponible también en la pagina de indice
 
 - Tutorial sobre uso del LCD : ver la clase del año 24-25 [2425CL5_LCD primeros pasos](https://github.com/Jcspoza/CMM_Python_uP_PicoW/tree/main/2425CL5_LCD1st)
+
+-  Tutoriales sobre pulsadores e interrupciones : [Buttons - Learning MicroPython](https://dmccreary.github.io/learning-micropython/basics/03-button/)
 
 ### Librerías importantes
 
@@ -77,9 +95,21 @@ Vamos a escribir en una tabla por un lado los requisitos HW y por otro lado las 
 
 ### Breve explicación sobre pulsadores
 
+Los pulsadores son **entradas digitales** que se usan para 3 propósitos:
+
+1. **Cambiar el estado** de un dispositivo : ejemplo encender o apagar un led al pulsar
+
+2. **Contar**: subir el volumen de un altavoz contando pulsaciones o la intensidad de un led
+
+3. **Medir tiempos** entre pulsaciones
+
+Normalmente se usan **pulsadores momentáneos,** es decir que vuelven a su estado al liberar la pulsación. Pero hay de otros tipos que cambian entre dos estados permaneciendo en el último.
+
+El **principal problema de los pulsadores son los rebotes:** el circuito eléctrico no se cierra ni abre de forma limpia. Es un problema complejo de tratar por HW, por lo que se suelen usar retardos en el SW.
+
 ![](./doc/pulsadores.png)
 
-### SIN interrupciones: contar pulsaciones: **PulsaScan** v1.0 y v2.1
+### Uso SIN interrupciones: contar pulsaciones
 
 [R_2526CL5_PulsaScan_1_0.py](R_2526CL5_PulsaScan_1_0.py) : cuenta las veces que se ha pulsado un pulsador , establece un tiempo de espera de 1 segundo entre pulsaciones 
 
@@ -131,7 +161,9 @@ Al ejecutar
 
 Aparecerá un mensaje en las 2 líneas del display
 
-## Prueba de la Funcionalidad : Autonomía
+---
+
+## 1x Prueba de la Funcionalidad : Autonomía con batería Lipo/ powerbank
 
 El componente mas demandante de potencia y voltaje es el LCD que de hecho puede no funcionar a 3.3 volt. Probamos a ejecutar el bhwt del LCD desconectado del PC
 
@@ -151,7 +183,7 @@ Resultado: **el montaje necesita para funcionar de forma autónoma una Powerbank
 
 ---
 
-## Prototipos Juego x1- SIN LCD
+## 1x Funcionalidad: Tiempo de reacción con interrupciones: Prototipos Juego x1- SIN LCD
 
 [R_2526CL5_JTReacX1_irq_1_0.py](R_2526CL5_JTReacX1_irq_1_0.py) : copia del programa del libro con ajuste de GPIO´s- poco útil
 
@@ -159,9 +191,15 @@ Resultado: **el montaje necesita para funcionar de forma autónoma una Powerbank
 
 [R_2526CL5_JTReacX1_irq_2_1.py](R_2526CL5_JTReacX1_irq_2_1.py) : En vez de esperar 2 segundo a que acabe de reaccionar el jugador, usa la salida de la interrupción ( = una variable que modifica la interrupción)
 
-## Prototipos Juego x1- CON LCD
+## 2x Funcionalidades: Tiempo de reacción con int. + Autonomía :Prototipos Juego x1- CON LCD
 
 [R_2526CL5_JTReacX1_irqLCD_1_0.py](R_2526CL5_JTReacX1_irqLCD_1_0.py) : basado en la version 2.1 sin LCD, simplemente añade mensajes de salida en el LCD
+
+---
+
+## 2x Funcionalidades : T. de reacción con int. + 2 jugadores  :Prototipos Juego x2- SIN LCD - por hacer
+
+## 3x Funcionalidades : T. de reacción con int. + 2 jugadores + Autonomía :Prototipos Juego x2- SIN LCD - por hacer
 
 ## Tabla resumen de programas
 
