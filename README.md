@@ -24,15 +24,13 @@ Indice evolutivo del las clases del taller + libros y webs de referencia:
 
 - 2x Funcionalidades: Tiempo de reacción con int. + Autonomía :Prototipos Juego x1- CON LCD
 
-- 
+- 2x Funcionalidades : T. de reacción con int. + 2 jugadores :Prototipos Juego x2- SIN LCD
 
-- 2x Funcionalidades : T. de reacción con int. + 2 jugadores :Prototipos Juego x2- SIN LCD - por hacer
-
-- 3x Funcionalidades : T. de reacción con int. + 2 jugadores + Autonomía :Prototipos Juego x2- SIN LCD - por hacer
+- 3x Funcionalidades : T. de reacción con int. + 2 jugadores + Autonomía :Prototipos Juego x2- SIN LCD
 
 - Tabla resumen de programas
 
-- TO DO
+- TO DO y Notas
 
 ## Materiales y links a informacion
 
@@ -44,7 +42,7 @@ Indice evolutivo del las clases del taller + libros y webs de referencia:
 | [Resistencia 220 ohm x1](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_resistor.html)                   | Resistencia 220 ohm para limitar corriente de LED                                                                                                                | SI               |
 | [Pulsador para protoboard de 4 contactos x2](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_button.html) | Pulsador para protoboard, su pulsación indicará fin de tiempo de reacción                                                                                        | SI               |
 | [Resistencia 10k ohm x2](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_resistor.html)                   | Resistencia de 10 K ohm para pull-Down                                                                                                                           | SI               |
-| [Condensador 1uF (105) cerámico](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_capacitor.html)          | Se necesita en el circuito anti rebote para uno de lso montajes parciales de aprendizaje. **No se usará en el montaje final**                                    | NO de este valor |
+| [Condensador 1uF (105) cerámico](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_capacitor.html)          | Se necesita en el circuito anti rebote para uno de los montajes parciales de aprendizaje. **No se usará en el montaje final**                                    | NO de este valor |
 | [LCD i2c 16x2 caracteres x1](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_i2clcd1602.html)             | Display LCD con comunicación i2c, de 2 líneas de 16 caracteres cada una                                                                                          | SI               |
 | [Cable M-H cinta x4 hilos](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_wire.html)                     | Para el display LCD                                                                                                                                              | SI               |
 | Pulsador 2 contactos                                                                                                                     | Para implementar circuito reset de la Pico W/2W                                                                                                                  | NO               |
