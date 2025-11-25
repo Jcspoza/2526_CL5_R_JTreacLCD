@@ -36,15 +36,24 @@ Indice evolutivo del las clases del taller + libros y webs de referencia:
 
 ## Materiales y links a informacion
 
-| Material                                                                                                              | Descripcion                                                                                                                     | Kit SF |
-| --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |:------:|
-| [Protoboard 400 o 700](https://docs.sunfounder.com/projects/kepler-kit/en/latest/component/component_breadboard.html) | Placa para prototipos ver apartado [Uso de la protoboard](https://github.com/Jcspoza/2526CL1_R_CircElect0#uso-de-la-protoboard) | SI     |
-| [Cables dupond M-M](https://docs.sunfounder.com/projects/kepler-kit/en/latest/component/component_wire.html)          | Sirven para hacer conexiones en protoboard                                                                                      | SI     |
-| [Led rojo](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_led.html)                   | Se usara para indicar comienzo de cuenta de Tiempo de reacción                                                                  | SI     |
-| [Resistencia 220 ohm](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_resistor.html)   | Resistencia 220 ohm para limitar corriente de LED                                                                               | SI     |
-| [Pulsador x2](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_button.html)             | Pulsador para protoboard, su pulsación indicará fin de tiempo de reacción                                                       | SI     |
-| [Resistencia 10k ohm](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_resistor.html)   | Resistencia de 10 K ohm para pull-Down                                                                                          | SI     |
-| [LCD i2c 16x2](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_i2clcd1602.html)        | Display LCD con comunicación i2c, de 2 líneas de 16 caracteres cada una                                                         | SI     |
+| Material                                                                                                                                 | Descripcion                                                                                                                                                      | Kit SF           |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |:----------------:|
+| [Protoboard 700](https://docs.sunfounder.com/projects/kepler-kit/en/latest/component/component_breadboard.html)                          | Placa para prototipos ver apartado [Uso de la protoboard](https://github.com/Jcspoza/2526CL1_R_CircElect0#uso-de-la-protoboard). Mejor usar la protoboard de 700 | SI               |
+| [Cables dupond M-M](https://docs.sunfounder.com/projects/kepler-kit/en/latest/component/component_wire.html)                             | Sirven para hacer conexiones en protoboard                                                                                                                       | SI               |
+| [Led rojo](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_led.html)                                      | Se usara para indicar comienzo de cuenta de Tiempo de reacción                                                                                                   | SI               |
+| [Resistencia 220 ohm x1](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_resistor.html)                   | Resistencia 220 ohm para limitar corriente de LED                                                                                                                | SI               |
+| [Pulsador para protoboard de 4 contactos x2](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_button.html) | Pulsador para protoboard, su pulsación indicará fin de tiempo de reacción                                                                                        | SI               |
+| [Resistencia 10k ohm x2](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_resistor.html)                   | Resistencia de 10 K ohm para pull-Down                                                                                                                           | SI               |
+| [Condensador 1uF (105) cerámico](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_capacitor.html)          | Se necesita en el circuito anti rebote para uno de lso montajes parciales de aprendizaje. **No se usará en el montaje final**                                    | NO de este valor |
+| [LCD i2c 16x2 caracteres x1](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_i2clcd1602.html)             | Display LCD con comunicación i2c, de 2 líneas de 16 caracteres cada una                                                                                          | SI               |
+| [Cable M-H cinta x4 hilos](https://docs.sunfounder.com/projects/pico-2w-kit/en/latest/component/component_wire.html)                     | Para el display LCD                                                                                                                                              | SI               |
+| Pulsador 2 contactos                                                                                                                     | Para implementar circuito reset de la Pico W/2W                                                                                                                  | NO               |
+
+### Fotos del montaje Final
+
+![](./doc/MontajeJTreacLCD.jpg)
+
+![](./doc/MontajeJTRLCD_det.jpg)
 
 ### Link a Tutoriales / informacion
 
@@ -71,25 +80,25 @@ Vamos a hacer el **Juego de Tiempo de Reacción humana ante un evento** siguiend
 Para hacerlo mas 'real' , vamos a llegar a un **prototipo autónomo**, es decir que no necesitemos el PC ni la consola de Thonny para jugar. Por tanto, necesitamos: 
 
 1. un display para mostrar informacion -> usaremos el del kit : LCD i2c 2x16 + la libreria T-622
-2. queremos que todo el proyecto tenga alimentación independiente del PC
+2. queremos que todo el proyecto tenga alimentación independiente del PC.
 
 ## Plan de trabajo : prototipado en 2 Dimensiones
 
 Vamos a escribir en una tabla por un lado los requisitos HW y por otro lado las pruebas básicas + pruebas de aprendizaje + programas con funcionalidades requeridas
 
-| Prueba/ Funcionalidad                                                                 | Alimentación independiente                      | LCD          | <u>Pulsador </u>: contar Pulsaciones                                  | Pulsador: Medir Tiempo usando interrupciones                       |
-| ------------------------------------------------------------------------------------- | ----------------------------------------------- | ------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| Pruebas de Aprendizaje                                                                |                                                 |              | Aprender / Entender pulsadores SIN interrupciones: contar pulsaciones |                                                                    |
-| Pruebas de Aprendizaje                                                                |                                                 |              |                                                                       | Medir tiempo SIN interrupción:                                     |
-| Pruebas de Aprendizaje                                                                |                                                 |              | Entender pulsadores CON interrupciones, contar pulsaciones            |                                                                    |
-| Funcionalidad: Medir tiempo de reacción                                               |                                                 |              |                                                                       | Medir tiempo CON interrupciones                                    |
-| Test básico                                                                           |                                                 | Bhwt del LCD |                                                                       |                                                                    |
-| Funcionalidad : Autonomía                                                             | Ejecutar BHWT de LCD con 1.batería Lipo => FAIL |              |                                                                       |                                                                    |
-| Funcionalidad : Autonomía                                                             | Ejecutar BHWT de LCD con 2. Power bank => OK    |              |                                                                       |                                                                    |
-| Funcionalidad: Medir tiempo Reacción 1 jugador CON Interrupciones                     |                                                 |              | X                                                                     | Primeros prototipos Juego x1:  **JTReacX1_irq** :  v1.0, v2.0 v2.1 |
-| Funcionalidades: Medir tiempo Reacción 1 jugador CON Interrupciones + LCD + powerbank | JTReacX1_irqLCD_1_0.py                          | X            | X                                                                     | X                                                                  |
-
-## 
+| Prueba/ Funcionalidad                                                                       | Alimentación independiente                                                                                              | LCD          | <u>Pulsador </u>: contar Pulsaciones                                  | Pulsador: Medir Tiempo usando interrupciones                                                                                   | X1 / X2 JUGADORES |
+| ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
+| Pruebas de Aprendizaje                                                                      |                                                                                                                         |              | Aprender / Entender pulsadores SIN interrupciones: contar pulsaciones |                                                                                                                                |                   |
+| Pruebas de Aprendizaje                                                                      |                                                                                                                         |              |                                                                       | Medir tiempo SIN interrupción:                                                                                                 |                   |
+| Pruebas de Aprendizaje                                                                      |                                                                                                                         |              | Entender pulsadores CON interrupciones, contar pulsaciones            |                                                                                                                                |                   |
+| Funcionalidad: Medir tiempo de reacción                                                     |                                                                                                                         |              |                                                                       | Medir tiempo CON interrupciones                                                                                                |                   |
+| Test básico                                                                                 |                                                                                                                         | Bhwt del LCD |                                                                       |                                                                                                                                |                   |
+| Funcionalidad : Autonomía                                                                   | Ejecutar BHWT de LCD con 1.batería Lipo => FAIL                                                                         |              |                                                                       |                                                                                                                                |                   |
+| Funcionalidad : Autonomía                                                                   | Ejecutar BHWT de LCD con 2. Power bank => OK                                                                            |              |                                                                       |                                                                                                                                |                   |
+| Funcionalidad: Medir tiempo Reacción 1 jugador CON Interrupciones                           |                                                                                                                         |              |                                                                       | Primeros prototipos Juego x1 SIN LCD:  **JTReacX1_irq** :  v1.0, v2.0 v2.1                                                     | X1                |
+| Funcionalidades: Medir tiempo Reacción **1 jugador** CON Interrupciones + LCD + powerbank   | **Primeros prototipos Juego x1 CON LCD:** JTReacX1_irqLCD_1_0.py                                                        | X-LCD        |                                                                       | X -T. Reac                                                                                                                     | X1 Jug            |
+| Funcionalidad: Medir tiempo Reacción 1 jugador CON Interrupciones                           |                                                                                                                         |              |                                                                       | Ampliación a 2 jugadores basado en irq 2.1 de 1 Jugador sin LCD [R_2526CL5_JTReacX2_irq_2_1.py](R_2526CL5_JTReacX2_irq_2_1.py) | x2 Jug            |
+| Funcionalidades: Medir tiempo Reacción **2 jugadores** CON Interrupciones + LCD + powerbank | **Versión Final Juego x2 CON LCD + mejoras :** [R_2526CL5_JTReacX2_irqLCD_3_0OK.py](R_2526CL5_JTReacX2_irqLCD_3_0OK.py) | X-LCD        |                                                                       | X -T. Reac                                                                                                                     | x2 Jug            |
 
 ## Aprender / Entender: pulsadores, interrupciones y medidas de tiempo
 
@@ -209,27 +218,47 @@ Resultado: **el montaje necesita para funcionar de forma autónoma una Powerbank
 
 ---
 
-## 2x Funcionalidades : T. de reacción con int. + 2 jugadores  :Prototipos Juego x2- SIN LCD - por hacer
+## 2x Funcionalidades : T. de reacción con int. + 2 jugadores  :Prototipos Juego x2- SIN LCD
 
-## 3x Funcionalidades : T. de reacción con int. + 2 jugadores + Autonomía :Prototipos Juego x2- SIN LCD - por hacer
+Ampliación a 2 jugadores basado en irq 2.1 de 1 Jugador  sin LCD
+
+[R_2526CL5_JTReacX2_irq_2_1.py](R_2526CL5_JTReacX2_irq_2_1.py)
+
+## 3x Funcionalidades : T. de reacción con int. + 2 jugadores + Autonomía :Prototipos Juego x2- CON LCD
+
+Lo hago en 2 pasos:
+
+1. Incorpora LCD al juego con 2 Jugadores , basándose en la versión sin LCD 2.1 de 2 Jugadores
+   [R_2526CL5_JTReacX2_irqLCD_2_1.py](R_2526CL5_JTReacX2_irqLCD_2_1.py)
+2. Incorporar algunas mejoras 
+
+        [R_2526CL5_JTReacX2_irqLCD_3_0OK.py](R_2526CL5_JTReacX2_irqLCD_3_0OK.py) : mejoras
+
+- 1 sola variable de fin
+- Añadir un periodo de preparación con intermitencias en elled
 
 ## Tabla resumen de programas
 
-| Programa                                                             | Lenguaje | HW si Robotica y Notas                          | Objetivo de Aprendizaje                                                                                                    |
-| -------------------------------------------------------------------- | -------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| [lcd_api.py](lcd_api.py)                                             | uPy      | instalar en /lib en la Pico                     | Librerías para el LCD                                                                                                      |
-| [pico_i2c_lcd.py](pico_i2c_lcd.py)                                   | uPy      | instalar en /lib en la Pico                     |                                                                                                                            |
-| [R_bhwt_lcd16x2_I2C.py](R_bhwt_lcd16x2_I2C.py)                       | uPy      | SDA -> GPIO4 / SCL -> GPIO5 / GND / VCC a+5volt | Test basico HW del LCD i2c                                                                                                 |
-| [R_2526CL5_PulsaScan_1_2.py](R_2526CL5_PulsaScan_1_2.py)             | uPy      | pulsador -> GPIO15/ Led interno                 | Aprendizaje de uso de pulsadores <u>SIN interrupciones</u>- Aucción  **contar**                                            |
-| [R_2526CL5_PulsaTime_1_0.py](R_2526CL5_PulsaTime_1_0.py) :           | uPy      | pulsador -> GPIO15/ Led interno                 | Aprendizaje de uso de pulsadores <u>SIN interrupciones</u>- Aucción  **Medir Tiempo**                                      |
-| [R_2526CL5_PulsaScanIrq_2_0.py](R_2526CL5_PulsaScanIrq_2_0.py)       | uPy      | pulsador -> GPIO15/ Led interno                 | Aprendizaje de uso de pulsadores <u>CON interrupciones</u>- Aucción  **contar**                                            |
-| [R_2526CL5_PulsaTimeIrq_2_0.py](R_2526CL5_PulsaTimeIrq_2_0.py)       | uPy      | pulsador -> GPIO15/ Led interno                 | Aprendizaje de uso de pulsadores <u>CON interrupciones</u>- Aucción  **Medir Tiempo**/ ==>Su codigo será la base del juego |
-| [R_2526CL5_JTReacX1_irq_2_0.py](R_2526CL5_JTReacX1_irq_2_0.py)       |          | pulsador -> GPIO15/ Led GPIO16                  | Prototipo Juego x1- SIN LCD                                                                                                |
-| [R_2526CL5_JTReacX1_irq_2_1.py](R_2526CL5_JTReacX1_irq_2_1.py)       |          | pulsador -> GPIO15/ Led GPIO16                  | Prototipo Juego x1- SIN LCD - Versión OK                                                                                   |
-| [R_2526CL5_JTReacX1_irqLCD_1_0.py](R_2526CL5_JTReacX1_irqLCD_1_0.py) |          | pulsador -> GPIO15/ Led GPIO16 / LCD GPIOS4 y 5 | Prototipo Juego x1- CON LCD                                                                                                |
+| Programa                                                                 | Lenguaje | HW si Robotica y Notas                                | Objetivo de Aprendizaje                                                                                                    |
+| ------------------------------------------------------------------------ | -------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| [lcd_api.py](lcd_api.py)                                                 | uPy      | instalar en /lib en la Pico                           | Librerías para el LCD                                                                                                      |
+| [pico_i2c_lcd.py](pico_i2c_lcd.py)                                       | uPy      | instalar en /lib en la Pico                           |                                                                                                                            |
+| [R_bhwt_lcd16x2_I2C.py](R_bhwt_lcd16x2_I2C.py)                           | uPy      | SDA -> GPIO4 / SCL -> GPIO5 / GND / VCC a+5volt       | Test basico HW del LCD i2c                                                                                                 |
+| [R_2526CL5_PulsaScan_1_2.py](R_2526CL5_PulsaScan_1_2.py)                 | uPy      | pulsador -> GPIO15/ Led interno                       | Aprendizaje de uso de pulsadores <u>SIN interrupciones</u>- Aucción  **contar**                                            |
+| [R_2526CL5_PulsaTime_1_0.py](R_2526CL5_PulsaTime_1_0.py) :               | uPy      | pulsador -> GPIO15/ Led interno                       | Aprendizaje de uso de pulsadores <u>SIN interrupciones</u>- Aucción  **Medir Tiempo**                                      |
+| [R_2526CL5_PulsaScanIrq_2_0.py](R_2526CL5_PulsaScanIrq_2_0.py)           | uPy      | pulsador -> GPIO15/ Led interno                       | Aprendizaje de uso de pulsadores <u>CON interrupciones</u>- Aucción  **contar**                                            |
+| [R_2526CL5_PulsaTimeIrq_2_0.py](R_2526CL5_PulsaTimeIrq_2_0.py)           | uPy      | pulsador -> GPIO15/ Led interno                       | Aprendizaje de uso de pulsadores <u>CON interrupciones</u>- Aucción  **Medir Tiempo**/ ==>Su codigo será la base del juego |
+| [R_2526CL5_JTReacX1_irq_2_0.py](R_2526CL5_JTReacX1_irq_2_0.py)           | uPy      | pulsador -> GPIO15/ Led GPIO16                        | Prototipo Juego x1- SIN LCD                                                                                                |
+| [R_2526CL5_JTReacX1_irq_2_1.py](R_2526CL5_JTReacX1_irq_2_1.py)           | uPy      | pulsador -> GPIO15/ Led GPIO16                        | Prototipo Juego x1- SIN LCD - Versión OK                                                                                   |
+| [R_2526CL5_JTReacX1_irqLCD_1_0.py](R_2526CL5_JTReacX1_irqLCD_1_0.py)     | uPy      | Pulsador -> GPIO15/ Led GPIO16 / LCD GPIOs4 y 5       | Prototipo Juego x1- CON LCD                                                                                                |
+| [R_2526CL5_JTReacX2_irq_2_1.py](R_2526CL5_JTReacX2_irq_2_1.py)           | uPy      | Pulsadores -> GPIO15 y 17/ Led GPIO16                 | Prototipo Juego x2- SIN LCD - Versión OK                                                                                   |
+| [R_2526CL5_JTReacX2_irqLCD_2_1.py](R_2526CL5_JTReacX2_irqLCD_2_1.py)     | uPy      | Pulsadores -> GPIO15 y 17/ Led GPIO16/ LCD GPIOs4 y 5 | Prototipo Juego x2- CON LCD                                                                                                |
+| [R_2526CL5_JTReacX2_irqLCD_3_0OK.py](R_2526CL5_JTReacX2_irqLCD_3_0OK.py) | uPy      | Pulsadores -> GPIO15 y 17/ Led GPIO16/ LCD GPIOs4 y 5 | Juego x2- CON LCD **Versión Final Ok** (de momento)                                                                        |
 
 ---
 
-## TO DO :
+## TO DO y Notas :
 
-- **Ampliar el Juego a 2 jugadores**
+- Todo : usar MPR121 con su pin de irq, para hacer un juego de hasta 12 jugadores con pulsadores sustituidos por superficies metálicas táctiles
+
+- **Notas Avanzadas**: los condensadores 1uF que formaban parte del circuito anti rebotes, me han dado muchos problemas , porque en ocasiones no daba tiempo a descargarse y saltaban las interrupciones . Los he quitado y todo parece ir OK
